@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { calculateFoodAmount, LifeStage, ActivityLevel } from '../utils/calculatorLogic';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function FoodCalculator() {
   const [pesoAlvo, setPesoAlvo] = useState('');
@@ -63,18 +64,56 @@ export default function FoodCalculator() {
       </Picker>
       
       <View style={styles.content2}>
-        <TouchableOpacity style={styles.buttonStyle} onPress={handleCalculate}>
-          <Text style={styles.resultText}>Calcular</Text>
+        <TouchableOpacity onPress={handleCalculate}>
+          <LinearGradient
+                    colors={['#ff3939ff', '#9e0b0bff', '#3f0707ff']}
+                    style={{
+                    padding: 12,
+                    borderRadius: 8,
+                    borderWidth: 1,
+                    borderColor: 'black',
+                    marginTop: 16,
+                    // Sombra no iOS
+                    shadowColor: 'black',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 4,
+        
+                    // Sombra no Android
+                    elevation: 20,
+                    }}
+                  >
+            <Text style={styles.resultText}>Calcular</Text>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
 
       {result && (
-        <View style={styles.result}>
+        <LinearGradient
+                    colors={['#ff3939ff', '#9e0b0bff', '#3f0707ff']}
+                    style={{
+                    padding: 16,
+                    borderRadius: 4,
+                    borderWidth: 1,
+                    borderColor: 'black',
+                    marginTop: 16,
+                    // Sombra no iOS
+                    shadowColor: 'black',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 4,
+        
+                    // Sombra no Android
+                    elevation: 20,
+                    }}
+                  >
+        <View>
           <Text style={styles.resultText}>Total por dia: {result.total.toFixed()} g</Text>
-          <Text>• Carcaça: {result.carcaca.toFixed()} g</Text>
-          <Text>• Vísceras: {result.viscera.toFixed()} g</Text>
-          <Text>• Músculo: {result.musculo.toFixed()} g</Text>
+          <Text style={styles.resultText}>• Carcaça: {result.carcaca.toFixed()} g</Text>
+          <Text style={styles.resultText}>• Vísceras: {result.viscera.toFixed()} g</Text>
+          <Text style={styles.resultText}>• Músculo: {result.musculo.toFixed()} g</Text>
         </View>
+        </LinearGradient>
       )}
     </View>
   );
@@ -97,20 +136,25 @@ const styles = StyleSheet.create({
   result: {
     marginTop: 20,
     padding: 10,
-    backgroundColor: '#2a9d8f',
-    borderRadius: 8,
+    backgroundColor: '#9e0b0bff',
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: 'black',
   },
   resultText: {
     fontWeight: 'bold',
     fontSize: 18,
+    color: 'white'
   },
   buttonStyle: {
     width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: '#2a9d8f',
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#9e0b0bff',
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'black',
   },
   content2: {
     alignItems: 'center',

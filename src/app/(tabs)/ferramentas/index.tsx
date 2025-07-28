@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import Calculadora from './calculadora';
 //import Ferramenta2 from './ferramenta2';
 //import Ferramenta3 from './ferramenta3';
@@ -49,12 +50,30 @@ export default function ListaFerramentas() {
         data={ferramentas}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.item}
-            onPress={() => abrirModal(item.componente)}
+          <LinearGradient
+            colors={['#ff3939ff', '#9e0b0bff', '#3f0707ff']}
+            style={{
+            padding: 8,
+            borderRadius: 4,
+            borderWidth: 1,
+            borderColor: 'black',
+            // Sombra no iOS
+            shadowColor: 'black',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.2,
+            shadowRadius: 4,
+
+            // Sombra no Android
+            elevation: 20,
+            }}
           >
-            <Text style={styles.title}>{item.title}</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.item}
+              onPress={() => abrirModal(item.componente)}
+            >
+              <Text style={styles.title}>{item.title}</Text>
+            </TouchableOpacity>
+          </LinearGradient>
         )}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
@@ -62,7 +81,25 @@ export default function ListaFerramentas() {
       <Modal visible={modalVisible} animationType="slide">
         <View style={styles.modalContent}>
           <TouchableOpacity style={styles.fechar} onPress={fecharModal}>
-            <Text style={styles.textoFechar}>Fechar</Text>
+            <LinearGradient
+            colors={['#ff3939ff', '#9e0b0bff', '#3f0707ff']}
+            style={{
+            padding: 1,
+            borderRadius: 4,
+            borderWidth: 1,
+            borderColor: 'black',
+            // Sombra no iOS
+            shadowColor: 'black',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.2,
+            shadowRadius: 4,
+
+            // Sombra no Android
+            elevation: 20,
+            }}
+            >
+              <Text style={styles.textoFechar}>Fechar</Text>
+            </LinearGradient>  
           </TouchableOpacity>
           {FerramentaSelecionada && <FerramentaSelecionada />}
         </View>
@@ -77,15 +114,27 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#fff',
   },
-  item: {
+  /*item: {
+    backgroundColor: '#fff',
     padding: 10,
-    backgroundColor: '#2a9d8f',
-    borderRadius: 8,
-  },
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#2a9d8f',
+
+    // Sombra no iOS
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 4 }, // desce a sombra
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+
+    // Sombra no Android
+    elevation: 20,
+  },*/
   title: {
     fontSize: 16,
-    textAlign: 'center',
-    fontWeight: 'bold'
+    textAlign: 'left',
+    fontWeight: 'bold',
+    color: 'white'
   },
   separator: {
     height: 10,
@@ -99,11 +148,13 @@ const styles = StyleSheet.create({
   fechar: {
     alignSelf: 'flex-end',
     marginBottom: 10,
-    backgroundColor: '#2a9d8f',
+    backgroundColor: '#9e0b0bff',
     borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'black'
   },
   textoFechar: {
-    color: 'black',
+    color: 'white',
     fontSize: 16,
     margin: 4,
   },
